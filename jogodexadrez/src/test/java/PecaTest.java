@@ -1,32 +1,48 @@
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+public class JogoDeXadrezTest {
 
-public class PecaTest
-{
     @Test
-    public void testPecaSubclassesCreatedSuccessfully()
-    {
-        assertNotNull(new Torre("T1"));
-        assertNotNull(new Cavalo("H1"));
-        assertNotNull(new Bispo("B1"));
-        assertNotNull(new Rainha("Q1"));
-        assertNotNull(new Rei("K1"));
-        assertNotNull(new Peao("P1"));
+    public void jogoDeXadrezImplementaInterfaceJogo() {
+        JogoDeXadrez jogo = new JogoDeXadrez();
+        assertTrue(jogo instanceof Jogo);
     }
 
     @Test
-    public void testPecaMoverMethodExists()
-    {
-        Peca peca = new Torre("T1");
-        assertDoesNotThrow(peca::mover);
+    public void jogadorHumanoHerdaJogador() {
+        JogadorHumano jogador = new JogadorHumano('b');
+        assertTrue(jogador instanceof Jogador);
     }
 
     @Test
-    public void testTabuleiroCreatedSuccessfully()
-    {
-        assertNotNull(new Tabuleiro());
+    public void jogadorSinteticoHerdaJogador() {
+        JogadorSintetico jogador = new JogadorSintetico('p');
+        assertTrue(jogador instanceof Jogador);
+    }
+
+    @Test
+    public void tabuleiroEhCriado() {
+        Tabuleiro tabuleiro = new Tabuleiro();
+        assertNotNull(tabuleiro);
+    }
+
+    @Test
+    public void jogadorAceitaCorBranca() {
+        JogadorHumano jogador = new JogadorHumano('b');
+        assertEquals('b', jogador.getCor());
+    }
+
+    @Test
+    public void jogadorAceitaCorPreta() {
+        JogadorSintetico jogador = new JogadorSintetico('p');
+        assertEquals('p', jogador.getCor());
+    }
+
+    @Test
+    public void iniciarNaoDeveLancarExcecao() {
+        JogoDeXadrez jogo = new JogoDeXadrez();
+        assertDoesNotThrow(() -> jogo.iniciar());
     }
 }
-
