@@ -1,30 +1,40 @@
-public class JogoDeXadrez implements Jogo
-{
-    public static void main(String[] args)
-    {
-        new JogoDeXadrez().iniciar();
-        System.out.println("diego alexandre");
-    }
+
+public class JogoDeXadrez implements Jogo {
 
     @Override
-    public void iniciar()
-    {
-        Tabuleiro tabuleiro = new Tabuleiro();
-        Jogador jogadorHumano = new JogadorHumano('b');
-        Jogador jogadorSintetico = new JogadorSintetico('p');
-        int turno = 0;
+    public void iniciar() {
 
-        while (!tabuleiro.acabouOJogo())
-        {
-            if (turno % 2 == 0)
-            {
-                jogadorHumano.jogar(tabuleiro, "P1b", turno + 1);
-            }
-            else
-            {
-                jogadorSintetico.jogar(tabuleiro, "P1p", turno + 1);
-            }
-            turno++;
+        Tabuleiro tabuleiro = new Tabuleiro();
+
+        Jogador jogadorHumano =
+                new JogadorHumano('b');
+
+        Jogador jogadorSintetico =
+                new JogadorSintetico('p');
+
+        while (!tabuleiro.acabouOJogo()) {
+
+            jogadorHumano.jogar(
+                    tabuleiro,
+                    "P1b",
+                    1
+            );
+
+            jogadorSintetico.jogar(
+                    tabuleiro,
+                    "P1p",
+                    1
+            );
         }
+    }
+
+    public static void main(String[] args) {
+
+        JogoDeXadrez jogo =
+                new JogoDeXadrez();
+
+        jogo.iniciar();
+
+        System.out.println("Guilherme Henrique dos Santos");
     }
 }
